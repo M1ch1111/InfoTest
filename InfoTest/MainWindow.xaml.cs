@@ -10,15 +10,21 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace InfoTest
 {
     public partial class MainWindow : Window
     {
-        private double x = 3.5;
-        private double y = 3;
-        private bool _isMoving = false;
-        private Thread? _movementThread;
+        double screenWidth = SystemParameters.PrimaryScreenWidth;
+        double screenHeight = SystemParameters.PrimaryScreenHeight;
+
+        double x;
+        double y;
+
+        bool bewegtSich = false;
+
+        Random rand = new Random();
 
         public MainWindow()
         {
@@ -27,50 +33,35 @@ namespace InfoTest
 
         private void neinKnopf_Click(object sender, RoutedEventArgs e)
         {
-            if (_isMoving)
+            if (bewegtSich)
             {
-                _isMoving = false;
-                _movementThread?.Join();
-                neinKnopf.Content = "Nein";
+                bewegtSich = false;
+                
             }
-            else
-            {
-                MessageBox.Show("Bravo du hast die Aufgabe gelöst!" + Environment.NewLine + "Auf ins nächste Rätsel");
-            }
+            MessageBox.Show("Du hast die richtige Wahl getroffen!" + Environment.NewLine + "Es geht weiter!");
+            this.Close();
         }
 
         private void jaKnopf_Click(object sender, RoutedEventArgs e)
         {
-            if (!_isMoving)
+            if (!bewegtSich)
             {
-                _isMoving = true;
-                _movementThread = new Thread(MoveWindow);
-                _movementThread.IsBackground = true;
-                _movementThread.Start();
-                neinKnopf.Content = "NEIN! Stop";
+                bewegtSich = true;
+                MoveWindow();
             }
-        }
+        }   
 
-        private void MoveWindow()
+        private async void MoveWindow()
         {
-            while (_isMoving)
-            {
-                Dispatcher.Invoke(() =>
-                {
-                    Left += x;
-                    Top += y;
-
-                    var screen = SystemParameters.WorkArea;
-
-                    if (Left <= screen.Left || Left + Width >= screen.Right)
-                        x = -x;
-
-                    if (Top <= screen.Top || Top + Height >= screen.Bottom)
-                        y = -y;
-                });
-
-                Thread.Sleep(10);
+            while (bewegtSich)
+            {               
+                x = rand.NextDouble() * (screenWidth - this.Width);
+                y = rand.NextDouble() * (screenHeight - this.Height);
+                this.Left = x;
+                this.Top = y;
+               await Task.Delay(700);
             }
+            
         }
     }
 }
