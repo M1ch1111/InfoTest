@@ -23,8 +23,10 @@ namespace InfoTest
         double y;
 
         bool bewegtSich = false;
+        bool richtung = true;
+        bool hoehe = true;
 
-        Random rand = new Random();
+        Random rnd = new Random();
 
         public MainWindow()
         {
@@ -55,13 +57,56 @@ namespace InfoTest
         {
             while (bewegtSich)
             {               
-                x = rand.NextDouble() * (screenWidth - this.Width);
-                y = rand.NextDouble() * (screenHeight - this.Height);
+                //RandomWerte();
+                tanzen();
                 this.Left = x;
                 this.Top = y;
-               await Task.Delay(700);
+                //await Task.Delay(700);
+                await Task.Delay(1000/60);
             }
-            
+        }
+
+        private void RandomWerte()
+        {
+            x = rnd.NextDouble() * (screenWidth - this.Width);
+            y = rnd.NextDouble() * (screenHeight - this.Height);
+        }
+
+        private void tanzen()
+        {
+            if (x == (screenWidth - this.Width))
+            {
+                richtung = false;
+            }
+            if (x == 0)
+            {
+                richtung = true;
+            }
+            if (x < (screenWidth - this.Width) && richtung)
+            {
+                x += 10;
+            }
+            else if (x > 0 && !richtung)
+            {
+                x -= 10;
+            }
+
+            if (y == (screenHeight - this.Height))
+            {
+                hoehe = false;
+            }
+            if (y == 0)
+            {
+                hoehe = true;
+            }
+            if (y < (screenHeight - this.Height) && hoehe)
+            {
+                y += 10;
+            }
+            else if (y > 0 && !hoehe)
+            {
+                y -= 10;
+            }
         }
     }
 }
