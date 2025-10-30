@@ -35,13 +35,17 @@ namespace InfoTest
 
         private void neinKnopf_Click(object sender, RoutedEventArgs e)
         {
+            if (!bewegtSich)
+            {
+                MessageBox.Show("Du hast die richtige Wahl getroffen!" + Environment.NewLine + "Es geht weiter!");
+                this.Close();
+            }
             if (bewegtSich)
             {
                 bewegtSich = false;
-                
+                tB.Text = "Ich gebe dir noch eine Chance!";
             }
-            MessageBox.Show("Du hast die richtige Wahl getroffen!" + Environment.NewLine + "Es geht weiter!");
-            this.Close();
+            
         }
 
         private void jaKnopf_Click(object sender, RoutedEventArgs e)
