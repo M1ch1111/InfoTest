@@ -5,8 +5,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:InfoTest"
         mc:Ignorable="d"
-        Title="StartScreen" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        WindowStartupLocation="CenterScreen"
+        Title="StartScreen" ResizeMode="NoResize" Height="550" Width="900">
+    <DockPanel>
+        <Grid Width="675">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="Willkommen zu meinem Spiel!" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="40" Margin="15"/>
+            <Button Grid.Column="1" Grid.Row="1" x:Name="startKnopf" Content="Spiel Starten" HorizontalAlignment="stretch" Background="LightGreen" FontSize="30" Margin="15" Padding="10" Click="startKnopf_Click"/>
+            <Button Grid.Column="1" Grid.Row="2" x:Name="ladenKnopf" Content="Spiel Laden" HorizontalAlignment="stretch" Background="LightGray"  FontSize="30" Margin="15" Padding="10" Click="loadKnopf_Click"/>
+            <Button Grid.Column="1" Grid.Row="3" x:Name="beendenKnopf" Content="Verlassen" HorizontalAlignment="stretch" Background="LightCoral" FontSize="30" Margin="15" Padding="10" Click="beendenKnopf_Click" RenderTransformOrigin="0.498,2.173"/>
+        </Grid>
+        <DockPanel>
+            
+        </DockPanel>
+    </DockPanel>
 </Window>
