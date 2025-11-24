@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InfoTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="400">
+        Title="MainWindow" Height="300" Width="400" x:Name="WegrennLevel">
     <StackPanel>
         <TextBlock Text="Gibt es was besseres als praktische Informatik?" HorizontalAlignment="center"  FontSize="17" Margin="10"/>
         <Button x:Name="jaKnopf" Content="Ja" HorizontalAlignment="stretch" Background="Red" FontSize="40" Margin="10" Padding="10" Click="jaKnopf_Click"/>

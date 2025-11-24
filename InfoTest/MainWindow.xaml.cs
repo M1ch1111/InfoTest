@@ -38,6 +38,9 @@ namespace InfoTest
             if (!bewegtSich)
             {
                 MessageBox.Show("Du hast die richtige Wahl getroffen!" + Environment.NewLine + "Es geht weiter!");
+                this.Hide();
+                Level2 levelZwei = new Level2();
+                levelZwei.Show();
                 this.Close();
             }
             if (bewegtSich)
