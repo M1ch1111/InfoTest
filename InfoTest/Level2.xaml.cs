@@ -75,7 +75,7 @@ namespace InfoTest
         private void r_Click(object sender, RoutedEventArgs e)
         {
             Button gedrueckterKnopf = sender as Button;
-            if (gedrueckterKnopf == null) return;
+            //if (gedrueckterKnopf == null) return;
 
             if (gedrueckterKnopf == Loesungen[rSchritt])
             {

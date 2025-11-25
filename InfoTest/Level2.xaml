@@ -39,7 +39,7 @@
                                         <Storyboard>
                                             <ColorAnimation Storyboard.TargetName="border" 
                                                     Storyboard.TargetProperty="Background.Color" 
-                                                    To="DarkRed" 
+                                                    To="DarkGreen" 
                                                     Duration="0:0:0.2" />
                                         </Storyboard>
                                     </BeginStoryboard>
