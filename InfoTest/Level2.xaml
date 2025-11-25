@@ -11,21 +11,76 @@
         WindowStyle="None" 
         ResizeMode="NoResize" 
         AllowsTransparency="True"
-        
         Background="Transparent">
+
+    <Window.Resources>
+        <Style x:Key="Geheimknopf" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                        BorderBrush="Transparent" 
+                        BorderThickness="0">
+
+                            <Border.Background>
+                                <SolidColorBrush Color="Black"/>
+                            </Border.Background>
+
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                                    Storyboard.TargetProperty="Background.Color" 
+                                                    To="DarkRed" 
+                                                    Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                                    Storyboard.TargetProperty="Background.Color" 
+                                                    To="Black" 
+                                                    Duration="0:0:0.5" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
     <Grid Background="Transparent">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
 
-        <Rectangle Fill="Black" Height="270" Width="1920" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="r1" Visibility="Hidden"/>
-        <Rectangle Fill="Black" Height="270" Width="1920" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="r2" Visibility="Hidden"/>
-        <Rectangle Fill="Black" Height="270" Width="1920" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="r3" Visibility="Hidden"/>
-        <Rectangle Fill="Black" Height="270" Width="1920" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="r4" Visibility="Hidden"/>
+        <Button Background="Black" Style="{StaticResource Geheimknopf}" Grid.Row="0" Grid.Column="0"  x:Name="r1" Visibility="Hidden" Click="r_Click"/>
+        <Button Background="Black" Style="{StaticResource Geheimknopf}" Grid.Row="0" Grid.Column="1"  x:Name="r2" Visibility="Hidden" Click="r_Click"/>
+        <Button Background="Black" Style="{StaticResource Geheimknopf}" Grid.Row="0" Grid.Column="2"  x:Name="r3" Visibility="Hidden" Click="r_Click"/>
+        <Button Background="Black" Style="{StaticResource Geheimknopf}" Grid.Row="1" Grid.Column="2"  x:Name="r4" Visibility="Hidden" Click="r_Click"/>
+        <Button Background="Black" Style="{StaticResource Geheimknopf}" Grid.Row="1" Grid.Column="1"  x:Name="r5" Visibility="Hidden" Click="r_Click"/>
+        <Button Background="Black" Style="{StaticResource Geheimknopf}" Grid.Row="1" Grid.Column="0"  x:Name="r6" Visibility="Hidden" Click="r_Click"/>
     </Grid>
 </Window>
