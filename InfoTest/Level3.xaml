@@ -7,14 +7,18 @@
         mc:Ignorable="d"
         Title="Level3" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None">
     
-    <Grid>
+    <Grid x:Name="Anwendung">
         <Grid x:Name="Faenger" Width="400" Height="250" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+            <Grid.RenderTransform>
+                <TranslateTransform x:Name="MoveTransform" X="0" Y="0"/>
+            </Grid.RenderTransform>
+
+            <Grid x:Name="Fensterleiste" Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="10*"/>
@@ -47,8 +51,8 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="Ok" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
-                    <Button x:Name="StartKnopf" Content="Start" FontSize="60" Grid.Row="1" Background="Green" HorizontalAlignment="Center" VerticalAlignment="Center" Click="StartKnopf_Click"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TextText}" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+                    <Button x:Name="StartKnopf" Content="{Binding ButtonText}" FontSize="60" Grid.Row="1" Background="Green" HorizontalAlignment="Center" VerticalAlignment="Center" Click="StartKnopf_Click"/>
                 </Grid>
             </Grid>
         </Grid>
