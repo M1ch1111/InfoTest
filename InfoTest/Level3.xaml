@@ -8,14 +8,14 @@
         Title="Level3" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None">
     
     <Grid x:Name="Anwendung">
-        <Grid x:Name="Faenger" Width="400" Height="250" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid x:Name="Faenger" Width="{Binding FaengerWidth}" Height="{Binding FaengerHeight}" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
 
             <Grid.RenderTransform>
-                <TranslateTransform x:Name="MoveTransform" X="0" Y="0"/>
+                <TranslateTransform X="{Binding MoveX}" Y="{Binding MoveY}"/>
             </Grid.RenderTransform>
 
             <Grid x:Name="Fensterleiste" Grid.Row="0">
@@ -52,7 +52,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Text="{Binding TextText}" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
-                    <Button x:Name="StartKnopf" Content="{Binding ButtonText}" FontSize="60" Grid.Row="1" Background="Green" HorizontalAlignment="Center" VerticalAlignment="Center" Click="StartKnopf_Click"/>
+                    <Button x:Name="StartKnopf" Content="{Binding ButtonText}" FontSize="60" Grid.Row="1" Background="Green" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding StartKnopf_ClickCommand}" CommandParameter="{Binding ElementName=Anwendung}"/>
                 </Grid>
             </Grid>
         </Grid>

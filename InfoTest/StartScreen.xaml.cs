@@ -8,24 +8,9 @@ public partial class StartScreen : Window
     public StartScreen()
     {
         InitializeComponent();
+        //[cite_start]// Verbinden von View und ViewModel [cite: 153]
+        DataContext = this.DataContext;
     }
 
-    private void startKnopf_Click(object sender, RoutedEventArgs e)
-    {
-        Level1 levelEins = new Level1();
-        MainWindow mainWindow = new MainWindow();
-        //levelEins.Show();
-        mainWindow.Show();
-        Close();
-    }
-
-    private void loadKnopf_Click(object sender, RoutedEventArgs e)
-    {
-
-    }
-
-    private void beendenKnopf_Click(object sender, RoutedEventArgs e)
-    {
-        Close();
-    }
+    //[cite_start]// Keine Click-Methoden mehr hier! [cite: 159]
 }
