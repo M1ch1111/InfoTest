@@ -168,7 +168,6 @@ namespace InfoTest
             AppText = "Verloren! Das Fenster hat dich gefangen.";
             TextText = "Verloren! Das Fenster hat dich gefangen.";
             ButtonText = "Neustart";
-
             StartKnopfEnabled = true;
         }
     }

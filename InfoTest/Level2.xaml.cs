@@ -74,6 +74,7 @@ namespace InfoTest
         }
         private void r_Click(object sender, RoutedEventArgs e)
         {
+            //if(sender == null) return; 
             Button gedrueckterKnopf = sender as Button;
             //if (gedrueckterKnopf == null) return;
 
