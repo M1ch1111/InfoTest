@@ -24,12 +24,11 @@ namespace InfoTest
         private DispatcherTimer starttimer = new DispatcherTimer();
         private FrameworkElement anwendung;
 
-
         [ObservableProperty]
         private string appText = "SpielFenster";
 
         [ObservableProperty]
-        private string textText = "Versuche dich nicht vom Fenster fangen zu lassen!"; // Tippfehler korrigiert ;)
+        private string textText = "Versuche dich nicht vom Fenster fangen zu lassen!"; 
 
         [ObservableProperty]
         private string buttonText = "Start";
@@ -71,7 +70,7 @@ namespace InfoTest
             {
                 starttimer.Stop();
                 TextText = "Los geht's!";
-                OnPropertyChanged(nameof(textText));
+                OnPropertyChanged(nameof(TextText));
                 spieltimer.Start();
                 fangTimer.Start();
             }
@@ -83,12 +82,12 @@ namespace InfoTest
             {
                 fangTimer.Stop();
                 spieltimer.Stop();
-                appText = "Geschafft! Du hast überlebt.";
+                AppText = "Geschafft! Du hast überlebt.";
             }
             else
             {
                 Timer--;
-                buttonText = Convert.ToString(Timer);
+                ButtonText = Convert.ToString(Timer);
             }
         }
 
@@ -101,7 +100,34 @@ namespace InfoTest
             //Faenger.HorizontalAlignment = 0;
 
             starttimer.Start();
-            startKnopfEnabled = false;
+            StartKnopfEnabled = false;
+        }
+
+        [RelayCommand]
+        private void ZurueckZurMitte_Click()
+        {
+            MoveX = 0;
+            MoveY = 0;
+        }
+
+        [RelayCommand]
+        private void Groß_Click() //Fertigstellen wenn noch Zeit da ist
+        {
+            if(FaengerWidth < 500 && FaengerHeight < 350)
+            {
+                FaengerWidth += 10;
+                FaengerHeight += 10;
+            }
+        }
+
+        [RelayCommand]
+        private void Klein_Click()
+        {
+            if(FaengerWidth > 300 && FaengerHeight > 150)
+            {
+                FaengerWidth -= 10;
+                FaengerHeight -= 10;
+            }
         }
 
         private void Fangen_Tick(object? sender, EventArgs e)
@@ -143,9 +169,7 @@ namespace InfoTest
             TextText = "Verloren! Das Fenster hat dich gefangen.";
             ButtonText = "Neustart";
 
-
-
-            startKnopfEnabled = true;
+            StartKnopfEnabled = true;
         }
     }
 }

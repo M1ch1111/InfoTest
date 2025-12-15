@@ -34,13 +34,13 @@
                 <TextBlock Grid.Column="1" Text="{Binding AppText}" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Margin="2.5"/>
 
                 <Rectangle Grid.Column="2" Fill="LightGray" Stroke="LightBlue" StrokeThickness="2"/>
-                <TextBlock Grid.Column="2" Text="-" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Margin="2.5"/>
+                <Button Grid.Column="2" Content=" - " VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Margin="0" BorderThickness="0" Command="{Binding Klein_ClickCommand}" CommandParameter="{Binding ElementName=Anwendung}"/>
 
                 <Rectangle Grid.Column="3" Fill="LightGray" Stroke="LightBlue" StrokeThickness="2"/>
-                <TextBlock Grid.Column="3" Text="[  ]" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Margin="2.5"/>
+                <Button Grid.Column="3" Content="[  ]" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Margin="0" BorderThickness="0" Command="{Binding Groß_ClickCommand}" CommandParameter="{Binding ElementName=Anwendung}"/>
 
                 <Rectangle Grid.Column="4" Fill="LightGray" Stroke="LightBlue" StrokeThickness="2"/>
-                <TextBlock Grid.Column="4" Text="X" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Margin="2.5"/>
+                <Button Grid.Column="4" Content=" X " VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Margin="0" BorderThickness="0" Command="{Binding ZurueckZurMitte_ClickCommand}" CommandParameter="{Binding ElementName=Anwendung}"/>
             </Grid>
 
             <Grid Grid.Row="1">
