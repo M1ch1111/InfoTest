@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace InfoTest.ViewModel
+namespace InfoTest
 {
     public partial class StartScreenViewModel : ObservableObject
     {
-        
+        public StartScreenViewModel()
+        {
+
+        }
     }
 }
