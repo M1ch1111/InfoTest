@@ -14,5 +14,20 @@ namespace InfoTest
         {
 
         }
+        [RelayCommand]
+        private void StartKnopf_Click()
+        {
+            
+        }
+        [RelayCommand]
+        private void LadeKnopf_Click()
+        {
+
+        }
+        [RelayCommand]
+        private void VerlassenKnopf_Click()
+        {
+
+        }
     }
 }
