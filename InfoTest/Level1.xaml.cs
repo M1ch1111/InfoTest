@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace InfoTest
 {
-    public partial class MainWindow : Window
+    public partial class Level1 : Window
     {
         double screenWidth = SystemParameters.PrimaryScreenWidth;
         double screenHeight = SystemParameters.PrimaryScreenHeight;
@@ -28,7 +28,7 @@ namespace InfoTest
 
         Random rnd = new Random();
 
-        public MainWindow()
+        public Level1()
         {
             InitializeComponent();
         }

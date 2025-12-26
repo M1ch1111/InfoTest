@@ -1,11 +1,11 @@
-﻿<Window x:Class="InfoTest.MainWindow"
+﻿<Window x:Class="InfoTest.Level1"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InfoTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="400" x:Name="WegrennLevel">
+        Title="Level1" Height="300" Width="400" x:Name="WegrennLevel">
     <StackPanel>
         <TextBlock Text="Gibt es was besseres als praktische Informatik?" HorizontalAlignment="center"  FontSize="17" Margin="10"/>
         <Button x:Name="jaKnopf" Content="Ja" HorizontalAlignment="stretch" Background="Red" FontSize="40" Margin="10" Padding="10" Click="jaKnopf_Click"/>

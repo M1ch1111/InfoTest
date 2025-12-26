@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -14,20 +15,25 @@ namespace InfoTest
         {
 
         }
+
         [RelayCommand]
-        private void StartKnopf_Click()
+        private void StartKnopf_Click(Window w)
         {
-            
+            Level1 l1 = new Level1();
+            l1.Show();
+            w.Close();
         }
+
         [RelayCommand]
         private void LadeKnopf_Click()
         {
 
         }
-        [RelayCommand]
-        private void VerlassenKnopf_Click()
-        {
 
+        [RelayCommand]
+        private void VerlassenKnopf_Click(Window w)
+        {
+            w.Close();
         }
     }
 }

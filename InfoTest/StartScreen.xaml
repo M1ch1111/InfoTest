@@ -20,7 +20,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="1" Grid.Row="0" Text="Willkommen zu meinem Spiel!" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="40" Margin="15"/>
-            <Button Grid.Column="1" Grid.Row="1" x:Name="startKnopf" Content="Spiel Starten" HorizontalAlignment="stretch" Background="LightGreen" FontSize="30" Margin="15" Padding="10" />
+            <Button Grid.Column="1" Grid.Row="1" x:Name="startKnopf" Content="Spiel Starten" HorizontalAlignment="stretch" Background="LightGreen" FontSize="30" Margin="15" Padding="10" Command="{Binding StartKnopf_Clcik}"/>
             <Button Grid.Column="1" Grid.Row="2" x:Name="ladenKnopf" Content="Spiel Laden" HorizontalAlignment="stretch" Background="LightGray"  FontSize="30" Margin="15" Padding="10" />
             <Button Grid.Column="1" Grid.Row="3" x:Name="beendenKnopf" Content="Verlassen" HorizontalAlignment="stretch" Background="LightCoral" FontSize="30"  Margin="15" Padding="10" />
         </Grid>
