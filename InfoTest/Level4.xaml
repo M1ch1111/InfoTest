@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid x:Name="Namen" Grid.Row="0" Margin="10">
+            <Grid x:Name="Namen" Grid.Column="0" Margin="10">
                 <ItemsControl ItemsSource="{Binding ListeSpieler}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -29,9 +29,15 @@
                 </ItemsControl>
             </Grid>
 
-            <StackPanel x:Name="Team" Grid.Row="1" Margin="10">
-                
-            </StackPanel>
+            <Grid x:Name="Team" Grid.Column="1" Margin="10">
+                <ItemsControl ItemsSource="{Binding ListeTrainer}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding}" Margin="5" FontSize="16"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
 
             <StackPanel x:Name="Trainer" Grid.Row="2" Margin="10">
                 
