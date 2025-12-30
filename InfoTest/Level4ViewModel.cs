@@ -1,6 +1,9 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,13 +11,17 @@ using System.Windows;
 
 namespace InfoTest
 {
-    public class Level4ViewModel
+    public partial class Level4ViewModel : ObservableObject
     {
-        List<string> spieler = new List<string> { "Alex", "Bob", "Carlos", "David", "Emil", "Frederik", "Greta", "Hans", "Ingrid", "Jens", "Kasimir" };
-        List<string> trainer = new List<string> { "Trainer A", "Trainer B", "Trainer C", "Trainer D" };
+        private List<string> spieler = new List<string> { "Alex", "Bob", "Carlos", "David", "Emil", "Frederik", "Greta", "Hans", "Ingrid", "Jens", "Kasimir", "Luna", "Michi"};
+        private List<string> trainer = new List<string> { "Trainer A", "Trainer B", "Trainer C", "Trainer D" };
+
+        [ObservableProperty]
+        private string aktuellerTrainer = "Kein Trainer";
 
         public ObservableCollection<string> ListeSpieler { get; } = new();
         public ObservableCollection<string> ListeTrainer { get; } = new();
+        public ObservableCollection<string> ListeTeam { get; } = new();
 
         public Level4ViewModel()
         {
@@ -36,6 +43,34 @@ namespace InfoTest
             {
                 ListeTrainer.Add(name);
             }
+        }
+
+        [RelayCommand]
+        private void ToggleSpieler(string name)
+        {
+            if (ListeTeam.Contains(name))
+            {
+                ListeTeam.Remove(name); // War schon drin -> Raus
+            }
+            else
+            {
+                ListeTeam.Add(name);    // War noch nicht drin -> Rein
+            }
+        }
+
+        [RelayCommand]
+        private void ToggleTrainer(string neuerTrainer)
+        {
+            foreach (var t in trainer)
+            {
+                if (AktuellerTrainer == t)
+                {
+                    AktuellerTrainer = "kein Trainer"; // Rauswerfen!
+                }
+            }
+
+            // 2. Den neuen Trainer hinzufügen
+            AktuellerTrainer = neuerTrainer;
         }
     }
 }

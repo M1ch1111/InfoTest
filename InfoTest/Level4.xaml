@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InfoTest"
         mc:Ignorable="d"
-        Title="Level4" Height="550" Width="850" ResizeMode="NoResize"> 
+        Title="Level4" x:Name="Level4Fenster" Height="550" Width="850" ResizeMode="NoResize"> 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" Margin="5">
+            
+        </Border>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -19,29 +23,68 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid x:Name="Namen" Grid.Column="0" Margin="10">
-                <ItemsControl ItemsSource="{Binding ListeSpieler}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <CheckBox Content="{Binding}" Margin="5" FontSize="16"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </Grid>
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="5">
+                <Grid x:Name="Namen"  Margin="10">
+                    <ScrollViewer>
+                        <StackPanel Margin="1">
+                            <ItemsControl ItemsSource="{Binding ListeSpieler}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <CheckBox Content="{Binding}" Margin="5" FontSize="16" Command="{Binding DataContext.ToggleSpielerCommand, ElementName=Level4Fenster}" CommandParameter="{Binding}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
 
-            <Grid x:Name="Team" Grid.Column="1" Margin="10">
-                <ItemsControl ItemsSource="{Binding ListeTrainer}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <CheckBox Content="{Binding}" Margin="5" FontSize="16"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </Grid>
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="5">
+                <Grid x:Name="Trainer"  Margin="10">
+                    <ItemsControl ItemsSource="{Binding ListeTrainer}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <RadioButton GroupName="TrainerGruppe" Content="{Binding}" Margin="5" FontSize="16" Command="{Binding DataContext.ToggleTrainerCommand, ElementName=Level4Fenster}" CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </Border>
 
-            <StackPanel x:Name="Trainer" Grid.Row="2" Margin="10">
-                
-            </StackPanel>
+            <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" Margin="5">
+                <Grid x:Name="Team"  Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="6*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1.2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Trainer:" Grid.Column="0" FontSize="30" FontWeight="Bold" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        <TextBlock Text="{Binding AktuellerTrainer}" Grid.Column="1" Margin="3" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    </Grid>
+
+                    <TextBlock Text="Team" Grid.Row="1" FontSize="30" FontWeight="Bold" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ScrollViewer Grid.Row="2" Margin="5">
+                        <StackPanel x:Name="TeamPanel" >
+                            <ItemsControl ItemsSource="{Binding ListeTeam}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Margin="5" FontSize="16"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
         </Grid>
     </Grid>
 </Window>
