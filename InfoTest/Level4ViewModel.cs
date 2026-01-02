@@ -13,11 +13,11 @@ namespace InfoTest
 {
     public partial class Level4ViewModel : ObservableObject
     {
-        private List<string> spieler = new List<string> { "Alex", "Bob", "Carlos", "David", "Emil", "Frederik", "Greta", "Hans", "Ingrid", "Jens", "Kasimir", "Luna", "Michi"};
-        private List<string> trainer = new List<string> { "Trainer A", "Trainer B", "Trainer C", "Trainer D" };
+        private List<string> spieler = new List<string> { "Alex", "Bob", "Carlos", "David", "Emil", "Frederik", "Greta", "Hans", "Ingrid", "Jens", "Kasimir", "Luna", "Michi", "Nick", };
+        private List<string> trainer = new List<string> { "Trainer A", "Trainer B", "Trainer C", "Trainer D", "Trainer E", "Trainer F", "Trainer G", "Trainer H", "Trainer I", "Trainer J" };
 
         [ObservableProperty]
-        private string aktuellerTrainer = "Kein Trainer";
+        private string aktuellerTrainer = "Leer";
 
         public ObservableCollection<string> ListeSpieler { get; } = new();
         public ObservableCollection<string> ListeTrainer { get; } = new();

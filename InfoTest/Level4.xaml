@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:InfoTest"
         mc:Ignorable="d"
         Title="Level4" x:Name="Level4Fenster" Height="550" Width="850" ResizeMode="NoResize"> 
-    <Grid>
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
@@ -67,7 +67,7 @@
 
                         <TextBlock Text="Trainer:" Grid.Column="0" FontSize="30" FontWeight="Bold" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                        <TextBlock Text="{Binding AktuellerTrainer}" Grid.Column="1" Margin="3" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding AktuellerTrainer}" Grid.Column="1" Margin="3" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                     </Grid>
 

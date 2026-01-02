@@ -35,5 +35,10 @@ namespace InfoTest
         {
             w.Close();
         }
+        [RelayCommand]
+        private void CreditsKnopf_Click()
+        {
+            MessageBox.Show("Programmiert von Michael Wiebe" + Environment.NewLine + "Design von Michael Wiebe" + Environment.NewLine + "Viel Spaß beim Spielen!" +Environment.NewLine + "Logo generiert von Gemini");
+        }
     }
 }

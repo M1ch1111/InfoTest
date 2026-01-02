@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:InfoTest"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="StartScreen" ResizeMode="NoResize" Height="550" Width="900">
+        Title="StartScreen" x:Name="StartScreenName" ResizeMode="NoResize" Height="550" Width="900">
     <DockPanel>
         <Grid Width="675">
             <Grid.ColumnDefinitions>
@@ -20,12 +20,43 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="1" Grid.Row="0" Text="Willkommen zu meinem Spiel!" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="40" Margin="15"/>
-            <Button Grid.Column="1" Grid.Row="1" x:Name="startKnopf" Content="Spiel Starten" HorizontalAlignment="stretch" Background="LightGreen" FontSize="30" Margin="15" Padding="10" Command="{Binding StartKnopf_Clcik}"/>
+            <Button Grid.Column="1" Grid.Row="1" x:Name="startKnopf" Content="Spiel Starten" HorizontalAlignment="stretch" Background="LightGreen" FontSize="30" Margin="15" Padding="10" Command="{Binding StartKnopf_ClickCommand}" CommandParameter="{Binding ElementName=StartScreenName}"/>
             <Button Grid.Column="1" Grid.Row="2" x:Name="ladenKnopf" Content="Spiel Laden" HorizontalAlignment="stretch" Background="LightGray"  FontSize="30" Margin="15" Padding="10" />
-            <Button Grid.Column="1" Grid.Row="3" x:Name="beendenKnopf" Content="Verlassen" HorizontalAlignment="stretch" Background="LightCoral" FontSize="30"  Margin="15" Padding="10" />
+            <Button Grid.Column="1" Grid.Row="3" x:Name="beendenKnopf" Content="Verlassen" HorizontalAlignment="stretch" Background="LightCoral" FontSize="30"  Margin="15" Padding="10" Command="{Binding VerlassenKnopf_ClickCommand}" CommandParameter="{Binding ElementName=StartScreenName}"/>
         </Grid>
         <DockPanel>
-            
+            <Grid Width="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Source="/Bild/Logo.png" Stretch="Uniform" Margin="5"/>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Wie ist dein Name?" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="22.5" Margin="0"/>
+                    <TextBox Grid.Row="1" x:Name="nameEingabe" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="20" Width="190" Margin="5"/>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Savegame:" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="22.5" Margin="0"/>
+                    <TextBox Grid.Row="1" x:Name="nameLadeEingabe" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="20" Width="190" Margin="5"/>
+                </Grid>
+
+                <Button Grid.Row="3" Margin="15" Content="Credits" FontSize="30" Command="{Binding CreditsKnopf_ClickCommand}" CommandParameter="{Binding ElementName=StartScreenName}"/>
+            </Grid>
         </DockPanel>
     </DockPanel>
 </Window>
