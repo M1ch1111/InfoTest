@@ -19,12 +19,18 @@ namespace InfoTest
         [ObservableProperty]
         private string aktuellerTrainer = "Leer";
 
+        [ObservableProperty]
+        private string spielerName;
+
         public ObservableCollection<string> ListeSpieler { get; } = new();
         public ObservableCollection<string> ListeTrainer { get; } = new();
         public ObservableCollection<string> ListeTeam { get; } = new();
 
-        public Level4ViewModel()
+        public Level4ViewModel(string name)
         {
+            SpielerName = name;
+            Speichern.SpeichereLevel(SpielerName, 4);
+
             SpielerHinzufuegen();
             TrainerHinzufuegen();
         }

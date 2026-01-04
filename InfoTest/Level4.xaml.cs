@@ -19,10 +19,10 @@ namespace InfoTest
     /// </summary>
     public partial class Level4 : Window
     {
-        public Level4()
+        public Level4(string name)
         {
             InitializeComponent();
-            this.DataContext = new Level4ViewModel();
+            this.DataContext = new Level4ViewModel(name);
         }
     }
 }

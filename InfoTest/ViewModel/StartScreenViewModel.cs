@@ -1,33 +1,92 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 
 namespace InfoTest
 {
-    public partial class StartScreenViewModel : ObservableObject
+    public partial class StartScreenViewModel : ObservableValidator
     {
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [Required(ErrorMessage = "Der Name darf nicht leer sein.")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Keine Sonderzeichen oder Leerzeichen erlaubt!")] //Entnommen aus StackOverflow
+        [NotifyCanExecuteChangedFor(nameof(StartKnopf_ClickCommand))]
+        private string neuerSpielerName = ""; 
+
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [Required(ErrorMessage = "Der Name darf nicht leer sein.")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Keine Sonderzeichen oder Leerzeichen erlaubt!")] //Entnommen aus StackOverflow
+        [NotifyCanExecuteChangedFor(nameof(LadeKnopf_ClickCommand))]
+        private string savegameName = "";
         public StartScreenViewModel()
         {
-
+            ValidateAllProperties();
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(KannStarten))]
         private void StartKnopf_Click(Window w)
         {
-            Level1 l1 = new Level1();
+            Speichern.SpeichereLevel(NeuerSpielerName, 1);
+
+            Level1 l1 = new Level1(NeuerSpielerName);
             l1.Show();
             w.Close();
         }
 
-        [RelayCommand]
-        private void LadeKnopf_Click()
+        private bool KannStarten()
         {
+            return !GetErrors(nameof(NeuerSpielerName)).Any() && !string.IsNullOrEmpty(NeuerSpielerName);
+        }
 
+        [RelayCommand(CanExecute = nameof(Ladbar))]
+        private void LadeKnopf_Click(Window w)
+        {
+            int level = Speichern.LadeLevel(SavegameName);
+
+            if (level == 1)
+            {
+                Level1 l1 = new Level1(SavegameName);
+                l1.Show();
+                w.Close();
+            }
+            else if (level == 2)
+            {
+                Level2 l2 = new Level2(SavegameName);
+                l2.Show();
+                w.Close();
+            }
+            else if (level == 3)
+            {
+                Level3 l3 = new Level3(SavegameName);
+                l3.Show();
+                w.Close();
+            }
+            else if (level == 4)
+            {
+                Level4 l4 = new Level4(SavegameName);
+                l4.Show();
+                w.Close();
+            }
+        }
+
+        private bool Ladbar()
+        {
+            if (GetErrors(nameof(SavegameName)).Any() || string.IsNullOrEmpty(SavegameName))
+            {
+                return false;
+            }
+
+            int level = Speichern.LadeLevel(SavegameName);
+
+            return level != 0;
         }
 
         [RelayCommand]
@@ -38,7 +97,9 @@ namespace InfoTest
         [RelayCommand]
         private void CreditsKnopf_Click()
         {
-            MessageBox.Show("Programmiert von Michael Wiebe" + Environment.NewLine + "Design von Michael Wiebe" + Environment.NewLine + "Viel Spaß beim Spielen!" +Environment.NewLine + "Logo generiert von Gemini");
+            MessageBox.Show("Programmiert von Michael Wiebe" + Environment.NewLine + "Design von Michael Wiebe" + Environment.NewLine + "Logo generiert von Gemini" + Environment.NewLine + "Viel Spaß beim Spielen!" );
         }
+
+        //Secret beim anklicken des logos?
     }
 }

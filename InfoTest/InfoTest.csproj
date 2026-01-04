@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SpielStaende\**" />
+    <EmbeddedResource Remove="SpielStaende\**" />
+    <None Remove="SpielStaende\**" />
+    <Page Remove="SpielStaende\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Bild\Logo.png" />
   </ItemGroup>
 

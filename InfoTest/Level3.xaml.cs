@@ -18,9 +18,9 @@ namespace InfoTest;
 
 public partial class Level3 : Window
 {
-    public Level3()
+    public Level3(string name)
     {
         InitializeComponent();
-        DataContext = new Level3ViewModel();
+        DataContext = new Level3ViewModel(name);
     }
 }

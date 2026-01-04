@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,8 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace InfoTest
 {
@@ -28,8 +30,11 @@ namespace InfoTest
 
         Random rnd = new Random();
 
-        public Level1()
+        private string spielerName;
+
+        public Level1(string name)
         {
+            spielerName = name;
             InitializeComponent();
         }
 
@@ -39,7 +44,7 @@ namespace InfoTest
             {
                 MessageBox.Show("Du hast die richtige Wahl getroffen!" + Environment.NewLine + "Es geht weiter!");
                 this.Hide(); 
-                Level2 levelZwei = new Level2();
+                Level2 levelZwei = new Level2(spielerName);
                 levelZwei.Show();
                 this.Close();
             }

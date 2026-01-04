@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="StartScreen" x:Name="StartScreenName" ResizeMode="NoResize" Height="550" Width="900">
+
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                            Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <DockPanel>
         <Grid Width="675">
             <Grid.ColumnDefinitions>
@@ -21,7 +34,7 @@
 
             <TextBlock Grid.Column="1" Grid.Row="0" Text="Willkommen zu meinem Spiel!" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="40" Margin="15"/>
             <Button Grid.Column="1" Grid.Row="1" x:Name="startKnopf" Content="Spiel Starten" HorizontalAlignment="stretch" Background="LightGreen" FontSize="30" Margin="15" Padding="10" Command="{Binding StartKnopf_ClickCommand}" CommandParameter="{Binding ElementName=StartScreenName}"/>
-            <Button Grid.Column="1" Grid.Row="2" x:Name="ladenKnopf" Content="Spiel Laden" HorizontalAlignment="stretch" Background="LightGray"  FontSize="30" Margin="15" Padding="10" />
+            <Button Grid.Column="1" Grid.Row="2" x:Name="ladenKnopf" Content="Spiel Laden" HorizontalAlignment="stretch" Background="LightGray"  FontSize="30" Margin="15" Padding="10" Command="{Binding LadeKnopf_ClickCommand}" CommandParameter="{Binding ElementName=StartScreenName}"/>
             <Button Grid.Column="1" Grid.Row="3" x:Name="beendenKnopf" Content="Verlassen" HorizontalAlignment="stretch" Background="LightCoral" FontSize="30"  Margin="15" Padding="10" Command="{Binding VerlassenKnopf_ClickCommand}" CommandParameter="{Binding ElementName=StartScreenName}"/>
         </Grid>
         <DockPanel>
@@ -42,7 +55,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Text="Wie ist dein Name?" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="22.5" Margin="0"/>
-                    <TextBox Grid.Row="1" x:Name="nameEingabe" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="20" Width="190" Margin="5"/>
+                    <TextBox Grid.Row="1" x:Name="nameEingabe" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="20" Width="190" Margin="5" Text="{Binding NeuerSpielerName, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -52,7 +65,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Text="Savegame:" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="22.5" Margin="0"/>
-                    <TextBox Grid.Row="1" x:Name="nameLadeEingabe" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="20" Width="190" Margin="5"/>
+                    <TextBox Grid.Row="1" x:Name="nameLadeEingabe" HorizontalAlignment="center" VerticalAlignment="Center" FontSize="20" Width="190" Margin="5" Text="{Binding SavegameName, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
 
                 <Button Grid.Row="3" Margin="15" Content="Credits" FontSize="30" Command="{Binding CreditsKnopf_ClickCommand}" CommandParameter="{Binding ElementName=StartScreenName}"/>

@@ -29,12 +29,14 @@ namespace InfoTest
 
         DispatcherTimer dp = new DispatcherTimer();
 
-        public Level2()
+        private string spielerName;
+
+        public Level2(string name)
         {
             InitializeComponent();
+            spielerName = name;
+            Speichern.SpeichereLevel(spielerName, 2);
 
-
-            
             dp.Interval = new TimeSpan(0, 0, 0, 1, 0);
             dp.Tick += rZaehler;
             dp.Start();

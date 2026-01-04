@@ -48,10 +48,15 @@ namespace InfoTest
         [ObservableProperty]
         private double faengerHeight = 250;
 
-        public Level3ViewModel()
+        [ObservableProperty]
+        private string spielerName;
+
+        public Level3ViewModel(string name)
         {
             //InitializeComponent();
             //this.DataContext = this;
+            SpielerName = name;
+            Speichern.SpeichereLevel(SpielerName, 3);
 
             fangTimer.Interval = new TimeSpan(0, 0, 0, 0, 15);
             fangTimer.Tick += Fangen_Tick;
