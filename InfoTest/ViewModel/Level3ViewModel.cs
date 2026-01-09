@@ -9,16 +9,17 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Xml.Linq;
 
 namespace InfoTest
 {
     public partial class Level3ViewModel : ObservableObject
     {
-        //private string appText = "SpielFenster";
         private double Timer = 30;
         private double StartTimer = 3;
-        //private string buttonText = "Start";
-        //private string textText = "Vrsuche dich nicht vom Fenster fangen zu lassen!";
+
+        private bool levelGeschafft = false;
+
         private DispatcherTimer fangTimer = new DispatcherTimer();
         private DispatcherTimer spieltimer = new DispatcherTimer();
         private DispatcherTimer starttimer = new DispatcherTimer();
@@ -88,6 +89,7 @@ namespace InfoTest
                 fangTimer.Stop();
                 spieltimer.Stop();
                 AppText = "Geschafft! Du hast überlebt.";
+                levelGeschafft = true;
             }
             else
             {
@@ -101,22 +103,32 @@ namespace InfoTest
         {
             anwendung = view;
             AppText = "Überlebe!";
-            //Faenger.VerticalAlignment = 0;
-            //Faenger.HorizontalAlignment = 0;
 
             starttimer.Start();
             StartKnopfEnabled = false;
         }
 
         [RelayCommand]
-        private void ZurueckZurMitte_Click()
+        private void Beenden_Click(FrameworkElement element)
         {
-            MoveX = 0;
-            MoveY = 0;
+            Window w = Window.GetWindow(element);
+
+            if (w == null) return; // Safety check
+            if (levelGeschafft)
+            {
+                Level4 l4 = new Level4(SpielerName);
+                l4.Show();
+                w.Close();
+            }
+            else
+            {
+                MoveX = 0;
+                MoveY = 0;
+            }
         }
 
         [RelayCommand]
-        private void Groß_Click() //Fertigstellen wenn noch Zeit da ist
+        private void Groß_Click() 
         {
             if(FaengerWidth < 500 && FaengerHeight < 350)
             {

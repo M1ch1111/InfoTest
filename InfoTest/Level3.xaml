@@ -40,7 +40,7 @@
                 <Button Grid.Column="3" Content="[  ]" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Margin="0" BorderThickness="0" Command="{Binding Groß_ClickCommand}" CommandParameter="{Binding ElementName=Anwendung}"/>
 
                 <Rectangle Grid.Column="4" Fill="LightGray" Stroke="LightBlue" StrokeThickness="2"/>
-                <Button Grid.Column="4" Content=" X " VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Margin="0" BorderThickness="0" Command="{Binding ZurueckZurMitte_ClickCommand}" CommandParameter="{Binding ElementName=Anwendung}"/>
+                <Button Grid.Column="4" Content=" X " VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Margin="0" BorderThickness="0" Command="{Binding Beenden_ClickCommand}" CommandParameter="{Binding ElementName=Anwendung}"/>
             </Grid>
 
             <Grid Grid.Row="1">

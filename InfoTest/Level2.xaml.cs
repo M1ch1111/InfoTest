@@ -88,6 +88,8 @@ namespace InfoTest
                 {
                     //LevelGeschafft();
                     MessageBox.Show("Level geschafft!");
+                    Level3 levelDrei = new Level3(spielerName);
+                    levelDrei.Show();
                     this.Close();
                 }
             }

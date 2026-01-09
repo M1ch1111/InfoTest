@@ -13,8 +13,8 @@ namespace InfoTest
 {
     public partial class Level4ViewModel : ObservableObject
     {
-        private List<string> spieler = new List<string> { "Alex", "Bob", "Carlos", "David", "Emil", "Frederik", "Greta", "Hans", "Ingrid", "Jens", "Kasimir", "Luna", "Michi", "Nick", };
-        private List<string> trainer = new List<string> { "Trainer A", "Trainer B", "Trainer C", "Trainer D", "Trainer E", "Trainer F", "Trainer G", "Trainer H", "Trainer I", "Trainer J" };
+        private List<string> spieler = new List<string> { "Alex", "Bob", "Carlos", "David", "Emil", "Frederik", "Greta", "Hans", "Ingrid", "Jens", "Kasimir", "Luna", "Michi", "Nick", "Otto", "Paul", "Quinn", "Rolf", "Susie"};
+        private List<string> trainer = new List<string> { "Trainer A", "Trainer B"};
 
         [ObservableProperty]
         private string aktuellerTrainer = "Leer";
@@ -25,6 +25,7 @@ namespace InfoTest
         public ObservableCollection<string> ListeSpieler { get; } = new();
         public ObservableCollection<string> ListeTrainer { get; } = new();
         public ObservableCollection<string> ListeTeam { get; } = new();
+        public ObservableCollection<string> FehlerListe { get; } = new();
 
         public Level4ViewModel(string name)
         {
@@ -56,12 +57,13 @@ namespace InfoTest
         {
             if (ListeTeam.Contains(name))
             {
-                ListeTeam.Remove(name); // War schon drin -> Raus
+                ListeTeam.Remove(name);
             }
             else
             {
-                ListeTeam.Add(name);    // War noch nicht drin -> Rein
+                ListeTeam.Add(name);
             }
+            PruefeRegeln();
         }
 
         [RelayCommand]
@@ -71,12 +73,101 @@ namespace InfoTest
             {
                 if (AktuellerTrainer == t)
                 {
-                    AktuellerTrainer = "kein Trainer"; // Rauswerfen!
+                    AktuellerTrainer = "kein Trainer";
                 }
             }
-
-            // 2. Den neuen Trainer hinzufügen
             AktuellerTrainer = neuerTrainer;
+
+            PruefeRegeln();
+        }
+
+        [RelayCommand]
+        private void BestaetigenKnopf_Click()
+        {
+            PruefeGewonnen();
+        }
+
+        private void PruefeGewonnen()
+        {
+            if (FehlerListe.Count == 0 && AktuellerTrainer != "Leer" && ListeTeam.Count >= 5)
+            {
+                MessageBox.Show("Glückwunsch! Du hast das Level geschafft!");
+            }
+            else
+            {
+                MessageBox.Show("Du hast die Bedingungen noch nicht erfüllt. Schau dir die Fehlerliste an!");
+            }
+        }
+
+        private void PruefeRegeln()
+        {
+            FehlerListe.Clear();
+            if (AktuellerTrainer == "Leer" && ListeTeam.Count > 0)
+            {
+                FehlerListe.Add("Achtung: Du hast Spieler gewählt, aber noch keinen Trainer!");
+                return;
+            }
+
+            switch (AktuellerTrainer)
+            {
+                case "Trainer A":
+                { 
+                    foreach (var spieler in ListeTeam)
+                    {
+                        if (spieler.Length > 5)
+                        {
+                            FehlerListe.Add($"Trainer A: '{spieler}' ist zu lang. Den kann ich mir nicht merken");
+                        }
+                    }
+                    for (int i = 1; i < ListeTeam.Count; i++)
+                    {
+                        string vorheriger = ListeTeam[i - 1];
+                        string aktueller = ListeTeam[i];
+
+                        if (string.Compare(vorheriger, aktueller) > 0)
+                        {
+                            FehlerListe.Add("Trainer A: Unordentlich! Sortieren!"); //Alphabetische Reihenfolge
+                        }
+                    }
+                    break;
+                }
+
+                case "Trainer B":
+                { 
+                    foreach (var spieler in ListeTeam)
+                    {
+                        if (spieler.ToLower().Contains('e'))
+                            FehlerListe.Add("Trainer B: Ein Buchstabe gefällt mir nicht!"); //'e' ist böse
+                    }
+
+                    bool hatPalindrom = false;
+                    foreach (var spieler in ListeTeam)
+                    {
+                        string nameKlein = spieler.ToLower();
+                        char[] charArray = nameKlein.ToCharArray();
+                        Array.Reverse(charArray);
+                        string rueckwaerts = new string(charArray);
+
+                        if (nameKlein == rueckwaerts) 
+                        {
+                            hatPalindrom = true;
+                        }    
+                    }
+                    if (!hatPalindrom && ListeTeam.Count > 0)
+                    {
+                        FehlerListe.Add("Trainer B: Wir brauchen einen mit Gleichgewicht im Team."); //Mindestens ein Palindrom
+                    }
+
+                    foreach (var spieler in ListeTeam)
+                    {
+                        if (spieler.ToLower().EndsWith("n"))
+                        {
+                            FehlerListe.Add($"Trainer B: '{spieler}' endet auf 'n'. Negative Schwingungen!");
+                        }
+                    }
+                    break;
+                }
+            }
         }
     }
 }
