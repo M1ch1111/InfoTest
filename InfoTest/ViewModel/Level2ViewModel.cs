@@ -104,8 +104,6 @@ namespace InfoTest
         private void rClick(string buttonNR)
         {
             string erwarteteNR = LoesungenNR[rSchritt];
-            Window w = Application.Current.Windows.OfType<Window>().FirstOrDefault();
-
             if (buttonNR == erwarteteNR)
             {
                 rSchritt++;
@@ -114,7 +112,7 @@ namespace InfoTest
                     MessageBox.Show("Level geschafft!");
                     Level3 levelDrei = new Level3(spielerName);
                     levelDrei.Show();
-                    w.Close();
+                    Application.Current.Windows.OfType<Level2>().FirstOrDefault()?.Close();
                 }
             }
             else
