@@ -52,7 +52,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Text="{Binding TextText}" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
-                    <Button x:Name="StartKnopf" Content="{Binding ButtonText}" Width="200" Height="75" FontSize="60" Grid.Row="1" Background="Green" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding StartKnopf_ClickCommand}" CommandParameter="{Binding ElementName=Anwendung}"/>
+                    <Button x:Name="StartKnopf" Content="{Binding ButtonText}" Width="300" Height="75" FontSize="60" Grid.Row="1" Background="Green" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding StartKnopf_ClickCommand}" CommandParameter="{Binding ElementName=Anwendung}"/>
                 </Grid>
             </Grid>
         </Grid>

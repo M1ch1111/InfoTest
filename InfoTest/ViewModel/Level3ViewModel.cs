@@ -161,23 +161,18 @@ namespace InfoTest
             double faengerAktuellY = fensterMitteY + BewegeY;
 
             double beschleunigung = 0.5;
-            double reibung = 0.96;       // 0.90 = Bremst schnell, 0.99 = Rutscht wie auf Eis
+            double reibung = 0.96;       // Werte von 90 - 99
 
-            // 2. Richtung zum Ziel (Maus) berechnen
             double richtungX = mausX - faengerAktuellX;
             double richtungY = mausY - faengerAktuellY;
 
-            // Abstand berechnen (Satz des Pythagoras)
             double abstand = Math.Sqrt(richtungX * richtungX + richtungY * richtungY);
 
-            // 3. Beschleunigen (Gas geben)
             if (abstand > 0)
             {
-                // Vektor normalisieren (Länge auf 1 bringen), damit wir nur die Richtung haben
                 richtungX /= abstand;
                 richtungY /= abstand;
 
-                // Geschwindigkeit in diese Richtung erhöhen
                 geschwindigkeitX += richtungX * beschleunigung;
                 geschwindigkeitY += richtungY * beschleunigung;
             }
@@ -192,7 +187,7 @@ namespace InfoTest
             double abstandX = Math.Abs(mausX - faengerNeuX);
             double abstandY = Math.Abs(mausY - faengerNeuY);
 
-            if (abstandX < (FaengerWidth / 2 - 15) && abstandY < (FaengerHeight / 2 - 15))
+            if (abstandX < (FaengerWidth / 2 - 10) && abstandY < (FaengerHeight / 2 - 10))
             {
                 GameOver();
             }

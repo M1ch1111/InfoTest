@@ -13,7 +13,7 @@ namespace InfoTest
 {
     public partial class Level4ViewModel : ObservableObject
     {
-        private List<string> spieler = new List<string> { "Alex", "Bob", "Carlos", "David", "Emil", "Frederik", "Greta", "Hans", "Ingrid", "Jens", "Kasimir", "Luna", "Michi", "Nick", "Otto", "Paul", "Quinn", "Rolf", "Susie"};
+        private List<string> spieler = new List<string> { "Michi", "Ingrid", "David", "Quinn", "Kasimir", "Bob", "Greta", "Frederik", "Rolf", "Alex", "Susie", "Otto", "Jens", "Carlos", "Paul", "Luna", "Emil", "Hans", "Nick"};
         private List<string> trainer = new List<string> { "Trainer A", "Trainer B"};
 
         [ObservableProperty]
@@ -108,6 +108,11 @@ namespace InfoTest
                 return;
             }
 
+            if (ListeTeam.Count < 5)
+            {
+                FehlerListe.Add("Du brauchst mindestens 5 Spieler im Team!");
+            }
+
             switch (AktuellerTrainer)
             {
                 case "Trainer A":
@@ -137,7 +142,7 @@ namespace InfoTest
                     foreach (var spieler in ListeTeam)
                     {
                         if (spieler.ToLower().Contains('e'))
-                            FehlerListe.Add("Trainer B: Ein Buchstabe gefällt mir nicht!"); //'e' ist böse
+                            FehlerListe.Add("Trainer B: Ein Buchstabe gefällt mir nicht!");
                     }
 
                     bool hatPalindrom = false;
@@ -155,14 +160,14 @@ namespace InfoTest
                     }
                     if (!hatPalindrom && ListeTeam.Count > 0)
                     {
-                        FehlerListe.Add("Trainer B: Wir brauchen einen mit Gleichgewicht im Team."); //Mindestens ein Palindrom
+                        FehlerListe.Add("Trainer B: Wir brauchen einen mit Gleichgewicht im Team."); //Palindrom
                     }
 
                     foreach (var spieler in ListeTeam)
                     {
                         if (spieler.ToLower().EndsWith("n"))
                         {
-                            FehlerListe.Add($"Trainer B: '{spieler}' endet auf 'n'. Negative Schwingungen!");
+                            FehlerListe.Add($"Trainer B: '{spieler}' endet auf 'n'. Grrrr");
                         }
                     }
                     break;
