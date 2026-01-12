@@ -69,22 +69,14 @@ namespace InfoTest
         {
             while (bewegtSich)
             {               
-                //RandomWerte();
                 tanzen();
                 this.Left = x;
                 this.Top = y;
-                //await Task.Delay(700);
                 await Task.Delay(1000/60);
             }
         }
 
-        private void RandomWerte()
-        {
-            x = rnd.NextDouble() * (screenWidth - this.Width);
-            y = rnd.NextDouble() * (screenHeight - this.Height);
-        }
-
-        private void tanzen()
+        private async void tanzen()
         {
             if (x == (screenWidth - this.Width))
             {

@@ -26,6 +26,8 @@ namespace InfoTest
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Keine Sonderzeichen oder Leerzeichen erlaubt!")] //Entnommen aus StackOverflow
         [NotifyCanExecuteChangedFor(nameof(LadeKnopf_ClickCommand))]
         private string savegameName = "";
+        private int logoKlickZaehler = 0;
+
         public StartScreenViewModel()
         {
             ValidateAllProperties();
@@ -100,6 +102,15 @@ namespace InfoTest
             MessageBox.Show("Programmiert von Michael Wiebe" + Environment.NewLine + "Design von Michael Wiebe" + Environment.NewLine + "Logo generiert von Gemini" + Environment.NewLine + "Viel Spaß beim Spielen!" );
         }
 
-        //Secret beim anklicken des logos?
+        [RelayCommand]
+        private void SecretClick()
+        {
+            logoKlickZaehler++;
+            if (logoKlickZaehler >= 5)
+            {
+                MessageBox.Show("GEHEIMNIS FREIGESCHALTET!" + Environment.NewLine + "Probiere mal den Spielstand ´Secret´ :)");
+                logoKlickZaehler = 0;
+            }
+        }
     }
 }

@@ -46,7 +46,11 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <Image Grid.Row="0" Source="/Bild/Logo.png" Stretch="Uniform" Margin="5"/>
+                <Image Grid.Row="0" Source="/Bilder/Logo.png" Stretch="Uniform" Margin="5">
+                    <Image.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding SecretClickCommand}"/>
+                    </Image.InputBindings>
+                </Image>
 
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
