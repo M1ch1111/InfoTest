@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -17,6 +18,9 @@ namespace InfoTest
     {
         private double Timer = 30;
         private double StartTimer = 3;
+
+        private double geschwindigkeitX = 0;
+        private double geschwindigkeitY = 0;
 
         private bool levelGeschafft = false;
 
@@ -38,10 +42,10 @@ namespace InfoTest
         private bool startKnopfEnabled = true;
 
         [ObservableProperty]
-        private double moveX = 0;
+        private double bewegeX = 0;
 
         [ObservableProperty]
-        private double moveY = 0;
+        private double bewegeY = 0;
 
         [ObservableProperty]
         private double faengerWidth = 400;
@@ -54,8 +58,6 @@ namespace InfoTest
 
         public Level3ViewModel(string name)
         {
-            //InitializeComponent();
-            //this.DataContext = this;
             SpielerName = name;
             Speichern.SpeichereLevel(SpielerName, 3);
 
@@ -113,7 +115,7 @@ namespace InfoTest
         {
             Window w = Window.GetWindow(element);
 
-            if (w == null) return; // Safety check
+            if (w == null) return;
             if (levelGeschafft)
             {
                 Level4 l4 = new Level4(SpielerName);
@@ -122,8 +124,8 @@ namespace InfoTest
             }
             else
             {
-                MoveX = 0;
-                MoveY = 0;
+                BewegeX = 0;
+                BewegeY = 0;
             }
         }
 
@@ -149,28 +151,48 @@ namespace InfoTest
 
         private void Fangen_Tick(object? sender, EventArgs e)
         {
-            //Point mousePos = Mouse.GetPosition(Anwendung);
             double mausX = Mouse.GetPosition(anwendung).X;
             double mausY = Mouse.GetPosition(anwendung).Y;
 
-            double fensterX = anwendung.ActualWidth / 2;
-            double fensterY = anwendung.ActualHeight / 2;
+            double fensterMitteX = anwendung.ActualWidth / 2;
+            double fensterMitteY = anwendung.ActualHeight / 2;
 
-            double vektorX = mausX - fensterX;
-            double vektorY = mausY - fensterY;
+            double faengerAktuellX = fensterMitteX + BewegeX;
+            double faengerAktuellY = fensterMitteY + BewegeY;
 
-            double FaengerGeschwindigkeit = 0.02;
+            double beschleunigung = 0.5;
+            double reibung = 0.96;       // 0.90 = Bremst schnell, 0.99 = Rutscht wie auf Eis
 
-            MoveX += (vektorX - MoveX) * FaengerGeschwindigkeit;
-            MoveY += (vektorY - MoveY) * FaengerGeschwindigkeit;
+            // 2. Richtung zum Ziel (Maus) berechnen
+            double richtungX = mausX - faengerAktuellX;
+            double richtungY = mausY - faengerAktuellY;
 
-            double faengerMitteX = fensterX + MoveX;
-            double faengerMitteY = fensterY + MoveY;
+            // Abstand berechnen (Satz des Pythagoras)
+            double abstand = Math.Sqrt(richtungX * richtungX + richtungY * richtungY);
 
-            double abstandX = Math.Abs(mausX - faengerMitteX);
-            double abstandY = Math.Abs(mausY - faengerMitteY);
+            // 3. Beschleunigen (Gas geben)
+            if (abstand > 0)
+            {
+                // Vektor normalisieren (Länge auf 1 bringen), damit wir nur die Richtung haben
+                richtungX /= abstand;
+                richtungY /= abstand;
 
-            if (abstandX < (FaengerWidth / 2 - 10) && abstandY < (FaengerHeight / 2 - 10))
+                // Geschwindigkeit in diese Richtung erhöhen
+                geschwindigkeitX += richtungX * beschleunigung;
+                geschwindigkeitY += richtungY * beschleunigung;
+            }
+            geschwindigkeitX *= reibung;
+            geschwindigkeitY *= reibung;
+            BewegeX += geschwindigkeitX;
+            BewegeY += geschwindigkeitY;
+
+            double faengerNeuX = fensterMitteX + BewegeX;
+            double faengerNeuY = fensterMitteY + BewegeY;
+
+            double abstandX = Math.Abs(mausX - faengerNeuX);
+            double abstandY = Math.Abs(mausY - faengerNeuY);
+
+            if (abstandX < (FaengerWidth / 2 - 15) && abstandY < (FaengerHeight / 2 - 15))
             {
                 GameOver();
             }
