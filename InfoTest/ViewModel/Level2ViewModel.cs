@@ -64,7 +64,6 @@ namespace InfoTest
                 LoesungenNR.Add(gezogeneZahl);
                 zahlen.RemoveAt(zufallsIndex);
             }
-            LoesungenNR.ForEach(z => MessageBox.Show(z));
         }
 
         private void rZaehler(object? sender, EventArgs e)
