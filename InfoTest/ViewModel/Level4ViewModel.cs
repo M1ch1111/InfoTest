@@ -91,7 +91,7 @@ namespace InfoTest
         {
             if (FehlerListe.Count == 0 && AktuellerTrainer != "Leer" && ListeTeam.Count >= 5)
             {
-                MessageBox.Show("Glückwunsch! Du hast das Level geschafft!");
+                MessageBox.Show("Glückwunsch! Du hast das Spiel geschafft!");
             }
             else
             {
