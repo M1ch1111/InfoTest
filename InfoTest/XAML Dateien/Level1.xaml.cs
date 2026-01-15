@@ -72,11 +72,11 @@ namespace InfoTest
                 tanzen();
                 this.Left = x;
                 this.Top = y;
-                await Task.Delay(1000/60);
+                await Task.Delay(1000 / 60);
             }
         }
 
-        private async void tanzen()
+        private void tanzen()
         {
             if (x == (screenWidth - this.Width))
             {
