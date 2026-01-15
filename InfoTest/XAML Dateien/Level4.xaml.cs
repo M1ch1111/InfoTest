@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace InfoTest
 {
-    /// <summary>
-    /// Interaktionslogik für Level4.xaml
-    /// </summary>
     public partial class Level4 : Window
     {
         public Level4(string name)

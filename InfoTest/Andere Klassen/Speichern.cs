@@ -15,11 +15,9 @@ namespace InfoTest
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
-                //C:\Users\Michi\Documents\GitHub\Informatik-Projekt-Test\InfoTest\InfoTest\bin\Debug\net9.0-windows\SpielStaende
             }
 
             string pfad = Path.Combine(folderPath, spielerName + ".txt");
-
             File.WriteAllText(pfad, levelNummer.ToString());
         }
 
