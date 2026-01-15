@@ -74,6 +74,7 @@ namespace InfoTest
         private void starttimer_Tick(object? sender, EventArgs e)
         {
             StartTimer--;
+            TextText = "Los geht's in " + Convert.ToString(StartTimer) + " Sekunden";
             if (StartTimer == 0)
             {
                 starttimer.Stop();
@@ -90,7 +91,7 @@ namespace InfoTest
             {
                 fangTimer.Stop();
                 spieltimer.Stop();
-                AppText = "Geschafft! Du hast überlebt.";
+                AppText = "Super! Du kannst das Fenster schließen";
                 levelGeschafft = true;
             }
             else
