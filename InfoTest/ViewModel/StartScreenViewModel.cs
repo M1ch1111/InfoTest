@@ -108,7 +108,7 @@ namespace InfoTest
             logoKlickZaehler++;
             if (logoKlickZaehler >= 5)
             {
-                MessageBox.Show("GEHEIMNIS FREIGESCHALTET!" + Environment.NewLine + "Probiere mal den Spielstand ´Secret´ :)");
+                MessageBox.Show("GEHEIMNIS FREIGESCHALTET!" + Environment.NewLine + ":)");
                 logoKlickZaehler = 0;
             }
         }
